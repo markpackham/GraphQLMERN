@@ -25,3 +25,22 @@ app.listen(port, console.log(`Server running on port ${port}`));
 //     email
 //   }
 // }
+
+// Get all projects descriptions and names
+// {
+//   projects{
+//     name
+//     description
+//   }
+// }
+
+// Relation ship query, between Project and Client get client name of a project
+// {
+//   project(id: "1"){
+//     name
+//     status
+//     client{
+//       name
+//     }
+//   }
+// }
