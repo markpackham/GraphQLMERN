@@ -2,11 +2,12 @@ const express = require("express");
 require("dotenv").config();
 const { graphqlHTTP } = require("express-graphql");
 const schema = require("./schema/schema");
+
 const port = process.env.PORT || 5000;
 
 const app = express();
 
-aap.use(
+app.use(
   "/graphql",
   graphqlHTTP({
     schema,
@@ -15,3 +16,12 @@ aap.use(
 );
 
 app.listen(port, console.log(`Server running on port ${port}`));
+
+// Example of get client name & email
+// location http://localhost:5000/graphql
+// {
+//   client(id: "1"){
+//     name,
+//     email
+//   }
+// }
