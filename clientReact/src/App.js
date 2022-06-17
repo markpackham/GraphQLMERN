@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import Header from "./components/Header";
+import Clients from "./components/Clients";
 import NotFound from "./pages/NotFound";
 
 const client = new ApolloClient({
@@ -14,7 +15,7 @@ function App() {
       <ApolloProvider client={client}>
         <Header />
         <div className="container">
-          <h1>Test</h1>
+          <Clients />
         </div>
       </ApolloProvider>
     </>
