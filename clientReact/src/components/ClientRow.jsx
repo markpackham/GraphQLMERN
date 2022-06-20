@@ -2,6 +2,7 @@ import { FaTrash } from 'react-icons/fa';
 import { useMutation } from '@apollo/client';
 import { DELETE_CLIENT } from '../mutations/clientMutations';
 import { GET_CLIENTS } from '../queries/clientQueries';
+import { GET_PROJECTS } from '../queries/projectQueries';
 
 export default function ClientRow({client}) {
   const [deleteClient] = useMutation(DELETE_CLIENT, {variables: {id: client.id},
@@ -16,6 +17,7 @@ export default function ClientRow({client}) {
         },
       });
     },
+    refetchQueries: [{query: GET_PROJECTS}]
   });
 
   return (
