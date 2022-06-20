@@ -4,7 +4,6 @@ import ProjectCard from './ProjectCard';
 import { GET_PROJECTS } from '../queries/projectQueries';
 
 export default function Projects() {
-
   const { loading, error, data } = useQuery(GET_PROJECTS);
 
   if (loading) return <Spinner />;

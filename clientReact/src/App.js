@@ -29,6 +29,8 @@ const client = new ApolloClient({
   cache,
 });
 
+// NotFound must be the last one we include since it uses a wildcard for a path thus is the last resort
+
 function App() {
   return (
     <>
