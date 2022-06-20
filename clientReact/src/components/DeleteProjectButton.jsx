@@ -8,10 +8,10 @@ export default function DeleteProjectButton({projectId }) {
   const navigate = useNavigate();
 
   const [deleteProject] = useMutation(DELETE_PROJECT,{variables: {id: projectId},
+    refetchQueries: [{query: GET_PROJECTS}],
   onCompleted: () => navigate('/'),
 // refetch queries is being used for demo purposes
 // updating the cache instead would be better performance wise
-refetchQueries: [{query: GET_PROJECTS}],
   });
 
   return (
