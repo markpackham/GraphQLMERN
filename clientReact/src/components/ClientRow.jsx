@@ -1,9 +1,22 @@
 import { FaTrash } from 'react-icons/fa';
 import { useMutation } from '@apollo/client';
 import { DELETE_CLIENT } from '../mutations/clientMutations';
+import { GET_CLIENTS } from '../queries/clientQueries';
 
 export default function ClientRow({client}) {
-  const [deleteClient] = useMutation(DELETE_CLIENT, {variables: {id: client.id}});
+  const [deleteClient] = useMutation(DELETE_CLIENT, {variables: {id: client.id},
+  // it's more efficient to update the cache rather than get all the clients again from the database after a deletion
+  // refetchQueries: [{query: GET_CLIENTS}],
+    update(cache, { data: { deleteClient } }) {
+      const { clients } = cache.readQuery({ query: GET_CLIENTS });
+      cache.writeQuery({
+        query: GET_CLIENTS,
+        data: {
+          clients: clients.filter((client) => client.id !== deleteClient.id),
+        },
+      });
+    },
+  });
 
   return (
     <tr>
