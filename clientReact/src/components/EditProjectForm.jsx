@@ -13,6 +13,16 @@ export default function EditProjectForm({project}) {
     refetchQueries: [{ query: GET_PROJECT, variables: { id: project.id } }],
   });
 
+  const onSubmit = (e) =>{
+    e.preventDefault();
+
+    if (!name || !description || !status) {
+      return alert('Please fill out all fields');
+    }
+
+    updateProject(name, description, status);
+  }
+
   return (
     <div className='mt-5'>
     <h3>Update Project Details</h3>
@@ -51,7 +61,7 @@ export default function EditProjectForm({project}) {
       </div>
 
       <button type='submit' className='btn btn-primary'>
-        Submit
+        Update
       </button>
     </form>
   </div>
